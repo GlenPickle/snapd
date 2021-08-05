@@ -21,7 +21,6 @@ package gadget_test
 
 import (
 	"path/filepath"
-	"testing"
 
 	. "gopkg.in/check.v1"
 
