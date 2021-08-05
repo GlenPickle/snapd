@@ -39,6 +39,7 @@ var (
 	}
 )
 
+// test comment
 // Mkfs creates a filesystem of given type and provided label in the device or
 // file. The device size and sector size provides hints for additional tuning of
 // the created filesystem.
