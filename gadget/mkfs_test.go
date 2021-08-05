@@ -20,7 +20,6 @@
 package gadget_test
 
 import (
-	"bytes"
 	"io"
 	"os"
 	"path/filepath"
