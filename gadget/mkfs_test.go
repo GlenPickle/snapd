@@ -357,20 +357,3 @@ func (m *mkfsSuite) TestMkfsInvalidFs(c *C) {
 	err = gadget.Mkfs("no-fs", "foo.img", "my-label", 0, 0)
 	c.Assert(err, ErrorMatches, `cannot create unsupported filesystem "no-fs"`)
 }
-
-func makeSizedFile(c *C, path string, size int64, content []byte) {
-	err := os.MkdirAll(filepath.Dir(path), 0755)
-	c.Assert(err, IsNil)
-
-	f, err := os.Create(path)
-	c.Assert(err, IsNil)
-	defer f.Close()
-	if size != 0 {
-		err = f.Truncate(size)
-		c.Assert(err, IsNil)
-	}
-	if content != nil {
-		_, err := io.Copy(f, bytes.NewReader(content))
-		c.Assert(err, IsNil)
-	}
-}
