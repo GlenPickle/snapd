@@ -32,8 +32,6 @@ import (
 	"github.com/snapcore/snapd/testutil"
 )
 
-func TestRun(t *testing.T) { TestingT(t) }
-
 type mkfsSuite struct {
 	testutil.BaseTest
 }
