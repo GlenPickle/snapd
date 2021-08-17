@@ -17,7 +17,7 @@
  *
  */
 
-package gadget
+package mkfs
 
 import (
 	"fmt"
@@ -30,7 +30,7 @@ import (
 	"github.com/snapcore/snapd/osutil"
 )
 
-type MkfsFunc func(imgFile, label, contentsRootDir string, deviceSize, sectorSize quantity.Size) error
+type MakeFunc func(imgFile, label, contentsRootDir string, deviceSize, sectorSize quantity.Size) error
 
 var (
 	mkfsHandlers = map[string]MkfsFunc{
@@ -40,18 +40,18 @@ var (
 )
 
 // test comment
-// Mkfs creates a filesystem of given type and provided label in the device or
+// Make creates a filesystem of given type and provided label in the device or
 // file. The device size and sector size provides hints for additional tuning of
 // the created filesystem.
-func Mkfs(typ, img, label string, deviceSize, sectorSize quantity.Size) error {
+func Make(typ, img, label string, deviceSize, sectorSize quantity.Size) error {
 	return MkfsWithContent(typ, img, label, "", deviceSize, sectorSize)
 }
 
-// MkfsWithContent creates a filesystem of given type and provided label in the
+// MakeWithContent creates a filesystem of given type and provided label in the
 // device or file. The filesystem is populated with contents of contentRootDir.
 // The device size provides hints for additional tuning of the created
 // filesystem.
-func MkfsWithContent(typ, img, label, contentRootDir string, deviceSize, sectorSize quantity.Size) error {
+func MakeWithContent(typ, img, label, contentRootDir string, deviceSize, sectorSize quantity.Size) error {
 	h, ok := mkfsHandlers[typ]
 	if !ok {
 		return fmt.Errorf("cannot create unsupported filesystem %q", typ)
