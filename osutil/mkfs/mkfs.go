@@ -33,7 +33,7 @@ import (
 type MakeFunc func(imgFile, label, contentsRootDir string, deviceSize, sectorSize quantity.Size) error
 
 var (
-	mkfsHandlers = map[string]MkfsFunc{
+	mkfsHandlers = map[string]MakeFunc{
 		"vfat": mkfsVfat,
 		"ext4": mkfsExt4,
 	}
@@ -44,7 +44,7 @@ var (
 // file. The device size and sector size provides hints for additional tuning of
 // the created filesystem.
 func Make(typ, img, label string, deviceSize, sectorSize quantity.Size) error {
-	return MkfsWithContent(typ, img, label, "", deviceSize, sectorSize)
+	return MakeWithContent(typ, img, label, "", deviceSize, sectorSize)
 }
 
 // MakeWithContent creates a filesystem of given type and provided label in the
