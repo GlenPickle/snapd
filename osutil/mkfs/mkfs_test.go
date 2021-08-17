@@ -20,13 +20,19 @@
 package mkfs_test
 
 import (
+	"bytes"
+	"io"
+	"os"
 	"path/filepath"
+	"testing"
 
 	. "gopkg.in/check.v1"
 
 	"github.com/snapcore/snapd/osutil/mkfs"
 	"github.com/snapcore/snapd/testutil"
 )
+
+func TestRun(t *testing.T) { TestingT(t) }
 
 type mkfsSuite struct {
 	testutil.BaseTest
